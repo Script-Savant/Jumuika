@@ -10,9 +10,9 @@ It helps people discover, create, and join local or virtual meetups — from tec
 
 🔐 User Accounts — register, log in, and manage your profile
 
-🎉 Create & Manage Meetups — host your own events effortlessly
+🎉 Create & Manage Meetings — host your own events effortlessly
 
-🔎 Discover Meetups — browse events by category, date, or city
+🔎 Discover Meetings — browse events by category, date, or city
 
 🙋 RSVP System — mark attendance and see who’s joining
 
