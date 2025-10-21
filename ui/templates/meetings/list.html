@@ -1,0 +1,17 @@
+{{ define "content" }}
+<h2 class="fw-bold mb-4">All Meetups</h2>
+<div class="row">
+  {{ range .Meetups }}
+  <div class="col-md-4 mb-4">
+    <div class="card shadow-sm border-0">
+      <img src="{{ .ImageURL }}" class="card-img-top" alt="Meetup image">
+      <div class="card-body">
+        <h5>{{ .Title }}</h5>
+        <p class="text-muted small mb-2">{{ .Location.City }}, {{ .StartTime.Format "Jan 2, 2006" }}</p>
+        <a href="/meetups/{{ .ID }}" class="btn btn-outline-primary btn-sm">Details</a>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+</div>
+{{ end }}

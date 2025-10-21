@@ -1,0 +1,27 @@
+{{ define "content" }}
+<div class="row">
+  <div class="col-md-4 text-center">
+    <img src="{{ .Profile.AvatarURL }}" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px;" alt="Profile picture">
+    <h4 class="fw-bold">{{ .Profile.FullName }}</h4>
+    <p class="text-muted">{{ .Profile.Location }}</p>
+    <a href="/profile/edit" class="btn btn-outline-secondary btn-sm">Edit Profile</a>
+  </div>
+
+  <div class="col-md-8">
+    <h5 class="fw-bold">About</h5>
+    <p>{{ .Profile.Bio }}</p>
+
+    <h5 class="fw-bold mt-4">Your Meetups</h5>
+    <div class="list-group">
+      {{ range .Meetups }}
+      <a href="/meetups/{{ .ID }}" class="list-group-item list-group-item-action">
+        <strong>{{ .Title }}</strong>
+        <span class="text-muted small float-end">{{ .StartTime.Format "Jan 2, 2006" }}</span>
+      </a>
+      {{ else }}
+      <p class="text-muted">You haven’t created any meetups yet.</p>
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}

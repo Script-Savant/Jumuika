@@ -1,0 +1,22 @@
+{{ define "content" }}
+<div class="text-center mb-5">
+  <h1 class="fw-bold">Discover Local Meetups</h1>
+  <p class="text-muted">Join like-minded people near you. Learn, network, and grow together!</p>
+  <a href="/meetups" class="btn btn-primary btn-lg mt-3">Explore Meetups</a>
+</div>
+
+<div class="row">
+  {{ range .Meetups }}
+  <div class="col-md-4 mb-4">
+    <div class="card shadow-sm border-0">
+      <img src="{{ .ImageURL }}" class="card-img-top" alt="Meetup image">
+      <div class="card-body">
+        <h5 class="card-title">{{ .Title }}</h5>
+        <p class="card-text text-muted small">{{ .Location.Name }} • {{ .StartTime.Format "Jan 2, 2006" }}</p>
+        <a href="/meetups/{{ .ID }}" class="btn btn-outline-primary btn-sm">View Details</a>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+</div>
+{{ end }}
