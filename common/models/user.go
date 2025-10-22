@@ -5,9 +5,10 @@ import "gorm.io/gorm"
 type User struct {
 	gorm.Model
 	Username     string    `gorm:"uniqueIndex;not null"`
-	Email        string    `gorm:"uniqueIndex;not null"`
+	// Email        string    `gorm:"uniqueIndex;not null"`
 	PasswordHash string    `gorm:"not null"`
 	Role         string    `gorm:"default:user"` // user or admin
+	Verified     bool      `gorm:"default:false"`
 	Profile      Profile   `gorm:"constraint:OnDelete:CASCADE"`
 	Meetings     []Meeting `gorm:"foreignKey:CreatorID"`
 }

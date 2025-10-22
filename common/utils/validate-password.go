@@ -1,23 +1,12 @@
-package handlers
+package utils
 
 import (
-	"net/http"
 	"strings"
 	"unicode"
-
-	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
-type AuthController struct {
-	DB *gorm.DB
-}
-
-func NewAuthController(db *gorm.DB) *AuthController {
-	return &AuthController{db}
-}
-
-func validatePassword(s string) bool {
+func ValidatePassword(s string) bool {
+	s = strings.TrimSpace(s)
 	if len(s) < 8 {
 		return false
 	}
@@ -41,15 +30,4 @@ func validatePassword(s string) bool {
 	}
 
 	return hasUpper && hasLower && hasDigit && hasSpecial
-}
-
-func (ac *AuthController) Register(c *gin.Context) {
-	if c.Request.Method == "GET" {
-		data := gin.H{
-			"Title": "register",
-		}
-		c.HTML(http.StatusOK, "register", data)
-	}
-
-	
 }

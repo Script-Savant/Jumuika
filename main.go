@@ -1,8 +1,10 @@
 package main
 
 import (
+	"Jumuika/API/apiRoutes"
 	"Jumuika/common/config"
 	"Jumuika/ui/templates"
+	"Jumuika/web/routes"
 	"log"
 	"os"
 
@@ -34,7 +36,11 @@ func main() {
 	// static files
 	router.Static("/static", "./ui/static")
 
-	// setup routes
+	// setup ui routes
+	routes.SetupAuthRoutes(router)
+
+	// setup api routes
+	apiRoutes.SetupAuthApiRoutes(router)
 
 	// start server
 	log.Println("Server starting on :8080")
