@@ -3,14 +3,14 @@ package routes
 import (
 	"Jumuika/common/config"
 	"Jumuika/common/middleware"
-	"Jumuika/web/handlers"
+	"Jumuika/web/webHandlers"
 
 	"github.com/gin-gonic/gin"
 )
 
 func SetupAuthRoutes(router *gin.Engine) {
 	db := config.GetDB()
-	authController := handlers.NewAuthController(db)
+	authController := webHandlers.NewAuthController(db)
 
 	router.GET("/register", authController.Register)
 	router.POST("/register", authController.Register)
@@ -20,7 +20,7 @@ func SetupAuthRoutes(router *gin.Engine) {
 	r := router.Group("/")
 	r.Use(middleware.AuthRequired())
 	{
-		r.GET("/logout", handlers.Logout)
+		r.GET("/logout", webHandlers.Logout)
 	}
 
 }

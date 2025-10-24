@@ -13,7 +13,7 @@
 
     <h5 class="fw-bold mt-4">Your Meetups</h5>
     <div class="list-group">
-      {{ range .Meetups }}
+      {{ range .meetings }}
       <a href="/meetups/{{ .ID }}" class="list-group-item list-group-item-action">
         <strong>{{ .Title }}</strong>
         <span class="text-muted small float-end">{{ .StartTime.Format "Jan 2, 2006" }}</span>

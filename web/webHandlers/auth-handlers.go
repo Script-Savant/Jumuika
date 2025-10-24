@@ -1,4 +1,4 @@
-package handlers
+package webHandlers
 
 import (
 	"Jumuika/common/models"
@@ -54,15 +54,30 @@ func (ac *AuthController) Register(c *gin.Context) {
 		return
 	}
 
-	newRecord := models.User{
+	tx := ac.DB.Begin()
+
+	newUserRecord := models.User{
 		Username:     username,
 		PasswordHash: string(hashedPass),
 	}
 
-	if err := ac.DB.Create(&newRecord).Error; err != nil {
+	if err := tx.Create(&newUserRecord).Error; err != nil {
+		tx.Rollback()
 		c.HTML(http.StatusInternalServerError, "register", gin.H{"error": "Failed to create new user"})
 		return
 	}
+
+	newProfileRecord := models.Profile{
+		UserID: newUserRecord.ID,
+	}
+
+	if err := tx.Create(&newProfileRecord).Error; err != nil {
+		tx.Rollback()
+		c.HTML(http.StatusInternalServerError, "register", gin.H{"error": "Failed to create user profile"})
+		return
+	}
+
+	tx.Commit()
 
 	c.Redirect(http.StatusFound, "/login")
 }

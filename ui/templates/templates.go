@@ -13,9 +13,12 @@ func SetupTemplates() multitemplate.Renderer {
 
 	// auth
 	authPath := "ui/templates/auth/"
-
 	renderer.AddFromFiles("login", base, authPath+"login.html")
 	renderer.AddFromFiles("register", base, authPath+"register.html")
+
+	// profile
+	profilePath := "ui/templates/profile"
+	renderer.AddFromFiles("profile-view", base, profilePath+"view.html")
 
 	return renderer
 
